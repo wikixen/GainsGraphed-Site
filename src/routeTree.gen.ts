@@ -10,156 +10,156 @@
 
 // Import Routes
 
-import { Route as rootRoute } from './routes/__root'
-import { Route as IndexImport } from './routes/index'
-import { Route as AuthenticatedLayoutImport } from './routes/_authenticated/_layout'
-import { Route as authSignupImport } from './routes/(auth)/signup'
-import { Route as authLoginImport } from './routes/(auth)/login'
-import { Route as AuthenticatedLayoutProgressImport } from './routes/_authenticated/_layout/progress'
-import { Route as AuthenticatedLayoutProfileImport } from './routes/_authenticated/_layout/profile'
-import { Route as AuthenticatedLayoutHistoryImport } from './routes/_authenticated/_layout/history'
-import { Route as AuthenticatedLayoutDiaryImport } from './routes/_authenticated/_layout/diary'
-import { Route as AuthenticatedLayoutDashboardImport } from './routes/_authenticated/_layout/dashboard'
+import { Route as rootRoute } from "./routes/__root";
+import { Route as IndexImport } from "./routes/index";
+import { Route as AuthenticatedLayoutImport } from "./routes/_authenticated/_layout";
+import { Route as authSignupImport } from "./routes/(auth)/signup";
+import { Route as authLoginImport } from "./routes/(auth)/login";
+import { Route as AuthenticatedLayoutProgressImport } from "./routes/_authenticated/_layout/progress";
+import { Route as AuthenticatedLayoutProfileImport } from "./routes/_authenticated/_layout/profile";
+import { Route as AuthenticatedLayoutHistoryImport } from "./routes/_authenticated/_layout/history";
+import { Route as AuthenticatedLayoutDiaryImport } from "./routes/_authenticated/_layout/diary";
+import { Route as AuthenticatedLayoutDashboardImport } from "./routes/_authenticated/_layout/dashboard";
 
 // Create/Update Routes
 
 const IndexRoute = IndexImport.update({
-  id: '/',
-  path: '/',
+  id: "/",
+  path: "/",
   getParentRoute: () => rootRoute,
-} as any)
+} as any);
 
 const AuthenticatedLayoutRoute = AuthenticatedLayoutImport.update({
-  id: '/_authenticated/_layout',
+  id: "/_authenticated/_layout",
   getParentRoute: () => rootRoute,
-} as any)
+} as any);
 
 const authSignupRoute = authSignupImport.update({
-  id: '/(auth)/signup',
-  path: '/signup',
+  id: "/(auth)/signup",
+  path: "/signup",
   getParentRoute: () => rootRoute,
-} as any)
+} as any);
 
 const authLoginRoute = authLoginImport.update({
-  id: '/(auth)/login',
-  path: '/login',
+  id: "/(auth)/login",
+  path: "/login",
   getParentRoute: () => rootRoute,
-} as any)
+} as any);
 
-const AuthenticatedLayoutProgressRoute =
-  AuthenticatedLayoutProgressImport.update({
-    id: '/progress',
-    path: '/progress',
+const AuthenticatedLayoutProgressRoute = AuthenticatedLayoutProgressImport
+  .update({
+    id: "/progress",
+    path: "/progress",
     getParentRoute: () => AuthenticatedLayoutRoute,
-  } as any)
+  } as any);
 
 const AuthenticatedLayoutProfileRoute = AuthenticatedLayoutProfileImport.update(
   {
-    id: '/profile',
-    path: '/profile',
+    id: "/profile",
+    path: "/profile",
     getParentRoute: () => AuthenticatedLayoutRoute,
   } as any,
-)
+);
 
 const AuthenticatedLayoutHistoryRoute = AuthenticatedLayoutHistoryImport.update(
   {
-    id: '/history',
-    path: '/history',
+    id: "/history",
+    path: "/history",
     getParentRoute: () => AuthenticatedLayoutRoute,
   } as any,
-)
+);
 
 const AuthenticatedLayoutDiaryRoute = AuthenticatedLayoutDiaryImport.update({
-  id: '/diary',
-  path: '/diary',
+  id: "/diary",
+  path: "/diary",
   getParentRoute: () => AuthenticatedLayoutRoute,
-} as any)
+} as any);
 
-const AuthenticatedLayoutDashboardRoute =
-  AuthenticatedLayoutDashboardImport.update({
-    id: '/dashboard',
-    path: '/dashboard',
+const AuthenticatedLayoutDashboardRoute = AuthenticatedLayoutDashboardImport
+  .update({
+    id: "/dashboard",
+    path: "/dashboard",
     getParentRoute: () => AuthenticatedLayoutRoute,
-  } as any)
+  } as any);
 
 // Populate the FileRoutesByPath interface
 
-declare module '@tanstack/react-router' {
+declare module "@tanstack/react-router" {
   interface FileRoutesByPath {
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexImport
-      parentRoute: typeof rootRoute
-    }
-    '/(auth)/login': {
-      id: '/(auth)/login'
-      path: '/login'
-      fullPath: '/login'
-      preLoaderRoute: typeof authLoginImport
-      parentRoute: typeof rootRoute
-    }
-    '/(auth)/signup': {
-      id: '/(auth)/signup'
-      path: '/signup'
-      fullPath: '/signup'
-      preLoaderRoute: typeof authSignupImport
-      parentRoute: typeof rootRoute
-    }
-    '/_authenticated/_layout': {
-      id: '/_authenticated/_layout'
-      path: ''
-      fullPath: ''
-      preLoaderRoute: typeof AuthenticatedLayoutImport
-      parentRoute: typeof rootRoute
-    }
-    '/_authenticated/_layout/dashboard': {
-      id: '/_authenticated/_layout/dashboard'
-      path: '/dashboard'
-      fullPath: '/dashboard'
-      preLoaderRoute: typeof AuthenticatedLayoutDashboardImport
-      parentRoute: typeof AuthenticatedLayoutImport
-    }
-    '/_authenticated/_layout/diary': {
-      id: '/_authenticated/_layout/diary'
-      path: '/diary'
-      fullPath: '/diary'
-      preLoaderRoute: typeof AuthenticatedLayoutDiaryImport
-      parentRoute: typeof AuthenticatedLayoutImport
-    }
-    '/_authenticated/_layout/history': {
-      id: '/_authenticated/_layout/history'
-      path: '/history'
-      fullPath: '/history'
-      preLoaderRoute: typeof AuthenticatedLayoutHistoryImport
-      parentRoute: typeof AuthenticatedLayoutImport
-    }
-    '/_authenticated/_layout/profile': {
-      id: '/_authenticated/_layout/profile'
-      path: '/profile'
-      fullPath: '/profile'
-      preLoaderRoute: typeof AuthenticatedLayoutProfileImport
-      parentRoute: typeof AuthenticatedLayoutImport
-    }
-    '/_authenticated/_layout/progress': {
-      id: '/_authenticated/_layout/progress'
-      path: '/progress'
-      fullPath: '/progress'
-      preLoaderRoute: typeof AuthenticatedLayoutProgressImport
-      parentRoute: typeof AuthenticatedLayoutImport
-    }
+    "/": {
+      id: "/";
+      path: "/";
+      fullPath: "/";
+      preLoaderRoute: typeof IndexImport;
+      parentRoute: typeof rootRoute;
+    };
+    "/(auth)/login": {
+      id: "/(auth)/login";
+      path: "/login";
+      fullPath: "/login";
+      preLoaderRoute: typeof authLoginImport;
+      parentRoute: typeof rootRoute;
+    };
+    "/(auth)/signup": {
+      id: "/(auth)/signup";
+      path: "/signup";
+      fullPath: "/signup";
+      preLoaderRoute: typeof authSignupImport;
+      parentRoute: typeof rootRoute;
+    };
+    "/_authenticated/_layout": {
+      id: "/_authenticated/_layout";
+      path: "";
+      fullPath: "";
+      preLoaderRoute: typeof AuthenticatedLayoutImport;
+      parentRoute: typeof rootRoute;
+    };
+    "/_authenticated/_layout/dashboard": {
+      id: "/_authenticated/_layout/dashboard";
+      path: "/dashboard";
+      fullPath: "/dashboard";
+      preLoaderRoute: typeof AuthenticatedLayoutDashboardImport;
+      parentRoute: typeof AuthenticatedLayoutImport;
+    };
+    "/_authenticated/_layout/diary": {
+      id: "/_authenticated/_layout/diary";
+      path: "/diary";
+      fullPath: "/diary";
+      preLoaderRoute: typeof AuthenticatedLayoutDiaryImport;
+      parentRoute: typeof AuthenticatedLayoutImport;
+    };
+    "/_authenticated/_layout/history": {
+      id: "/_authenticated/_layout/history";
+      path: "/history";
+      fullPath: "/history";
+      preLoaderRoute: typeof AuthenticatedLayoutHistoryImport;
+      parentRoute: typeof AuthenticatedLayoutImport;
+    };
+    "/_authenticated/_layout/profile": {
+      id: "/_authenticated/_layout/profile";
+      path: "/profile";
+      fullPath: "/profile";
+      preLoaderRoute: typeof AuthenticatedLayoutProfileImport;
+      parentRoute: typeof AuthenticatedLayoutImport;
+    };
+    "/_authenticated/_layout/progress": {
+      id: "/_authenticated/_layout/progress";
+      path: "/progress";
+      fullPath: "/progress";
+      preLoaderRoute: typeof AuthenticatedLayoutProgressImport;
+      parentRoute: typeof AuthenticatedLayoutImport;
+    };
   }
 }
 
 // Create and export the route tree
 
 interface AuthenticatedLayoutRouteChildren {
-  AuthenticatedLayoutDashboardRoute: typeof AuthenticatedLayoutDashboardRoute
-  AuthenticatedLayoutDiaryRoute: typeof AuthenticatedLayoutDiaryRoute
-  AuthenticatedLayoutHistoryRoute: typeof AuthenticatedLayoutHistoryRoute
-  AuthenticatedLayoutProfileRoute: typeof AuthenticatedLayoutProfileRoute
-  AuthenticatedLayoutProgressRoute: typeof AuthenticatedLayoutProgressRoute
+  AuthenticatedLayoutDashboardRoute: typeof AuthenticatedLayoutDashboardRoute;
+  AuthenticatedLayoutDiaryRoute: typeof AuthenticatedLayoutDiaryRoute;
+  AuthenticatedLayoutHistoryRoute: typeof AuthenticatedLayoutHistoryRoute;
+  AuthenticatedLayoutProfileRoute: typeof AuthenticatedLayoutProfileRoute;
+  AuthenticatedLayoutProgressRoute: typeof AuthenticatedLayoutProgressRoute;
 }
 
 const AuthenticatedLayoutRouteChildren: AuthenticatedLayoutRouteChildren = {
@@ -168,90 +168,90 @@ const AuthenticatedLayoutRouteChildren: AuthenticatedLayoutRouteChildren = {
   AuthenticatedLayoutHistoryRoute: AuthenticatedLayoutHistoryRoute,
   AuthenticatedLayoutProfileRoute: AuthenticatedLayoutProfileRoute,
   AuthenticatedLayoutProgressRoute: AuthenticatedLayoutProgressRoute,
-}
+};
 
-const AuthenticatedLayoutRouteWithChildren =
-  AuthenticatedLayoutRoute._addFileChildren(AuthenticatedLayoutRouteChildren)
+const AuthenticatedLayoutRouteWithChildren = AuthenticatedLayoutRoute
+  ._addFileChildren(AuthenticatedLayoutRouteChildren);
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
-  '/login': typeof authLoginRoute
-  '/signup': typeof authSignupRoute
-  '': typeof AuthenticatedLayoutRouteWithChildren
-  '/dashboard': typeof AuthenticatedLayoutDashboardRoute
-  '/diary': typeof AuthenticatedLayoutDiaryRoute
-  '/history': typeof AuthenticatedLayoutHistoryRoute
-  '/profile': typeof AuthenticatedLayoutProfileRoute
-  '/progress': typeof AuthenticatedLayoutProgressRoute
+  "/": typeof IndexRoute;
+  "/login": typeof authLoginRoute;
+  "/signup": typeof authSignupRoute;
+  "": typeof AuthenticatedLayoutRouteWithChildren;
+  "/dashboard": typeof AuthenticatedLayoutDashboardRoute;
+  "/diary": typeof AuthenticatedLayoutDiaryRoute;
+  "/history": typeof AuthenticatedLayoutHistoryRoute;
+  "/profile": typeof AuthenticatedLayoutProfileRoute;
+  "/progress": typeof AuthenticatedLayoutProgressRoute;
 }
 
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
-  '/login': typeof authLoginRoute
-  '/signup': typeof authSignupRoute
-  '': typeof AuthenticatedLayoutRouteWithChildren
-  '/dashboard': typeof AuthenticatedLayoutDashboardRoute
-  '/diary': typeof AuthenticatedLayoutDiaryRoute
-  '/history': typeof AuthenticatedLayoutHistoryRoute
-  '/profile': typeof AuthenticatedLayoutProfileRoute
-  '/progress': typeof AuthenticatedLayoutProgressRoute
+  "/": typeof IndexRoute;
+  "/login": typeof authLoginRoute;
+  "/signup": typeof authSignupRoute;
+  "": typeof AuthenticatedLayoutRouteWithChildren;
+  "/dashboard": typeof AuthenticatedLayoutDashboardRoute;
+  "/diary": typeof AuthenticatedLayoutDiaryRoute;
+  "/history": typeof AuthenticatedLayoutHistoryRoute;
+  "/profile": typeof AuthenticatedLayoutProfileRoute;
+  "/progress": typeof AuthenticatedLayoutProgressRoute;
 }
 
 export interface FileRoutesById {
-  __root__: typeof rootRoute
-  '/': typeof IndexRoute
-  '/(auth)/login': typeof authLoginRoute
-  '/(auth)/signup': typeof authSignupRoute
-  '/_authenticated/_layout': typeof AuthenticatedLayoutRouteWithChildren
-  '/_authenticated/_layout/dashboard': typeof AuthenticatedLayoutDashboardRoute
-  '/_authenticated/_layout/diary': typeof AuthenticatedLayoutDiaryRoute
-  '/_authenticated/_layout/history': typeof AuthenticatedLayoutHistoryRoute
-  '/_authenticated/_layout/profile': typeof AuthenticatedLayoutProfileRoute
-  '/_authenticated/_layout/progress': typeof AuthenticatedLayoutProgressRoute
+  __root__: typeof rootRoute;
+  "/": typeof IndexRoute;
+  "/(auth)/login": typeof authLoginRoute;
+  "/(auth)/signup": typeof authSignupRoute;
+  "/_authenticated/_layout": typeof AuthenticatedLayoutRouteWithChildren;
+  "/_authenticated/_layout/dashboard": typeof AuthenticatedLayoutDashboardRoute;
+  "/_authenticated/_layout/diary": typeof AuthenticatedLayoutDiaryRoute;
+  "/_authenticated/_layout/history": typeof AuthenticatedLayoutHistoryRoute;
+  "/_authenticated/_layout/profile": typeof AuthenticatedLayoutProfileRoute;
+  "/_authenticated/_layout/progress": typeof AuthenticatedLayoutProgressRoute;
 }
 
 export interface FileRouteTypes {
-  fileRoutesByFullPath: FileRoutesByFullPath
+  fileRoutesByFullPath: FileRoutesByFullPath;
   fullPaths:
-    | '/'
-    | '/login'
-    | '/signup'
-    | ''
-    | '/dashboard'
-    | '/diary'
-    | '/history'
-    | '/profile'
-    | '/progress'
-  fileRoutesByTo: FileRoutesByTo
+    | "/"
+    | "/login"
+    | "/signup"
+    | ""
+    | "/dashboard"
+    | "/diary"
+    | "/history"
+    | "/profile"
+    | "/progress";
+  fileRoutesByTo: FileRoutesByTo;
   to:
-    | '/'
-    | '/login'
-    | '/signup'
-    | ''
-    | '/dashboard'
-    | '/diary'
-    | '/history'
-    | '/profile'
-    | '/progress'
+    | "/"
+    | "/login"
+    | "/signup"
+    | ""
+    | "/dashboard"
+    | "/diary"
+    | "/history"
+    | "/profile"
+    | "/progress";
   id:
-    | '__root__'
-    | '/'
-    | '/(auth)/login'
-    | '/(auth)/signup'
-    | '/_authenticated/_layout'
-    | '/_authenticated/_layout/dashboard'
-    | '/_authenticated/_layout/diary'
-    | '/_authenticated/_layout/history'
-    | '/_authenticated/_layout/profile'
-    | '/_authenticated/_layout/progress'
-  fileRoutesById: FileRoutesById
+    | "__root__"
+    | "/"
+    | "/(auth)/login"
+    | "/(auth)/signup"
+    | "/_authenticated/_layout"
+    | "/_authenticated/_layout/dashboard"
+    | "/_authenticated/_layout/diary"
+    | "/_authenticated/_layout/history"
+    | "/_authenticated/_layout/profile"
+    | "/_authenticated/_layout/progress";
+  fileRoutesById: FileRoutesById;
 }
 
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
-  authLoginRoute: typeof authLoginRoute
-  authSignupRoute: typeof authSignupRoute
-  AuthenticatedLayoutRoute: typeof AuthenticatedLayoutRouteWithChildren
+  IndexRoute: typeof IndexRoute;
+  authLoginRoute: typeof authLoginRoute;
+  authSignupRoute: typeof authSignupRoute;
+  AuthenticatedLayoutRoute: typeof AuthenticatedLayoutRouteWithChildren;
 }
 
 const rootRouteChildren: RootRouteChildren = {
@@ -259,11 +259,11 @@ const rootRouteChildren: RootRouteChildren = {
   authLoginRoute: authLoginRoute,
   authSignupRoute: authSignupRoute,
   AuthenticatedLayoutRoute: AuthenticatedLayoutRouteWithChildren,
-}
+};
 
 export const routeTree = rootRoute
   ._addFileChildren(rootRouteChildren)
-  ._addFileTypes<FileRouteTypes>()
+  ._addFileTypes<FileRouteTypes>();
 
 /* ROUTE_MANIFEST_START
 {

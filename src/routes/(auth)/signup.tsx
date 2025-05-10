@@ -6,7 +6,5 @@ export const Route = createFileRoute("/(auth)/signup")({
 });
 
 function RouteComponent() {
-  return (
-    <AuthForm defaultTab="tab2" />
-  );
+  return <AuthForm defaultTab="tab2" />;
 }

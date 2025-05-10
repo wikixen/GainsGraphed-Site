@@ -9,5 +9,5 @@ export const Route = createRootRoute({
       <TanStackRouterDevtools />
     </>
   ),
-  notFoundComponent: () => (<NotFoundPage />)
+  notFoundComponent: () => <NotFoundPage />,
 });

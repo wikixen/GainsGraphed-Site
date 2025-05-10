@@ -1,5 +1,5 @@
-import { Link } from "@tanstack/react-router"
-import { PrimaryButton } from "../../components/ui/primaryButton"
+import { Link } from "@tanstack/react-router";
+import { PrimaryButton } from "../../components/ui/primaryButton";
 
 export const NotFoundPage = () => {
   return (
@@ -14,5 +14,5 @@ export const NotFoundPage = () => {
         </PrimaryButton>
       </section>
     </main>
-)
-}
+  );
+};

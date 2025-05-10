@@ -1,9 +1,9 @@
-import { createFileRoute, Outlet } from '@tanstack/react-router'
-import { Header } from '../../components/header'
+import { createFileRoute, Outlet } from "@tanstack/react-router";
+import { Header } from "../../components/header";
 
-export const Route = createFileRoute('/_authenticated/_layout')({
+export const Route = createFileRoute("/_authenticated/_layout")({
   component: RouteComponent,
-})
+});
 
 function RouteComponent() {
   return (
@@ -13,5 +13,5 @@ function RouteComponent() {
         <Outlet />
       </section>
     </main>
-  )
+  );
 }

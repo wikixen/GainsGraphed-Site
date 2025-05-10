@@ -1,12 +1,13 @@
-import { useFieldContext } from "."
+import { useFieldContext } from ".";
+import { FieldError } from "./fieldError";
 
 interface TextFieldProps {
-  label: string,
-  type: string,
-  placeholder: string
+  label: string;
+  type: string;
+  placeholder: string;
 }
 
-export const TextField = ({label, type, placeholder}: TextFieldProps) => {
+export const TextField = ({ label, type, placeholder }: TextFieldProps) => {
   const field = useFieldContext<string>();
 
   return (
@@ -16,13 +17,14 @@ export const TextField = ({label, type, placeholder}: TextFieldProps) => {
       </label>
       <input
         className="py-3 px-4 text-sm border-1 border-gray-300 rounded-lg focus:outline-2 focus:outline-black  dark:focus:outline-orange-500 dark:bg-[#e8dad2] dark:text-black"
-        type={ type }
+        type={type}
         name={field.name}
         id={field.name}
         placeholder={placeholder}
         value={field.state.value}
         onChange={(e) => field.handleChange(e.target.value)}
       />
+      <FieldError meta={field.state.meta} />
     </div>
-  )
-}
+  );
+};

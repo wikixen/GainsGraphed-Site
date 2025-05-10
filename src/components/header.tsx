@@ -89,7 +89,9 @@ interface NavLinkProps {
 const NavLink = ({ children, active, tab }: NavLinkProps) => (
   <NavigationMenu.Link
     className={`${
-      active === tab ? "active [&.active]:bg-blue-400 text-white dark:[&.active]:bg-orange-400" : ""
+      active === tab
+        ? "active [&.active]:bg-blue-400 text-white dark:[&.active]:bg-orange-400"
+        : ""
     } flex flex-row w-48 px-3 py-2 items-center gap-2 text-black rounded-md cursor-pointer hover:bg-gray-100 dark:text-white dark:hover:bg-gray-800 transition-colors`}
   >
     {children}
