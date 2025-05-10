@@ -47,7 +47,7 @@ function RouteComponent() {
   ];
 
   return (
-    <div className="grid grid-rows-[auto_1fr_auto] dark:bg-black">
+    <div className="min-h-screen grid grid-rows-[auto_1fr_auto] dark:bg-black">
       <header className="grid grid-cols-2 py-40 items-center bg-[#e4f0f9] dark:bg-black">
         <section className="flex flex-col gap-4 text-black px-4 dark:text-white lg:items-center">
           <h1 className="text-5xl font-bold">Track Your Fitness Journey</h1>

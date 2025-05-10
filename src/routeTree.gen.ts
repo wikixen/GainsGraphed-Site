@@ -12,13 +12,14 @@
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as IndexImport } from './routes/index'
-import { Route as AuthenticatedProgressImport } from './routes/_authenticated/progress'
-import { Route as AuthenticatedProfileImport } from './routes/_authenticated/profile'
-import { Route as AuthenticatedHistoryImport } from './routes/_authenticated/history'
-import { Route as AuthenticatedDiaryImport } from './routes/_authenticated/diary'
-import { Route as AuthenticatedDashboardImport } from './routes/_authenticated/dashboard'
+import { Route as AuthenticatedLayoutImport } from './routes/_authenticated/_layout'
 import { Route as authSignupImport } from './routes/(auth)/signup'
 import { Route as authLoginImport } from './routes/(auth)/login'
+import { Route as AuthenticatedLayoutProgressImport } from './routes/_authenticated/_layout/progress'
+import { Route as AuthenticatedLayoutProfileImport } from './routes/_authenticated/_layout/profile'
+import { Route as AuthenticatedLayoutHistoryImport } from './routes/_authenticated/_layout/history'
+import { Route as AuthenticatedLayoutDiaryImport } from './routes/_authenticated/_layout/diary'
+import { Route as AuthenticatedLayoutDashboardImport } from './routes/_authenticated/_layout/dashboard'
 
 // Create/Update Routes
 
@@ -28,33 +29,8 @@ const IndexRoute = IndexImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
-const AuthenticatedProgressRoute = AuthenticatedProgressImport.update({
-  id: '/_authenticated/progress',
-  path: '/progress',
-  getParentRoute: () => rootRoute,
-} as any)
-
-const AuthenticatedProfileRoute = AuthenticatedProfileImport.update({
-  id: '/_authenticated/profile',
-  path: '/profile',
-  getParentRoute: () => rootRoute,
-} as any)
-
-const AuthenticatedHistoryRoute = AuthenticatedHistoryImport.update({
-  id: '/_authenticated/history',
-  path: '/history',
-  getParentRoute: () => rootRoute,
-} as any)
-
-const AuthenticatedDiaryRoute = AuthenticatedDiaryImport.update({
-  id: '/_authenticated/diary',
-  path: '/diary',
-  getParentRoute: () => rootRoute,
-} as any)
-
-const AuthenticatedDashboardRoute = AuthenticatedDashboardImport.update({
-  id: '/_authenticated/dashboard',
-  path: '/dashboard',
+const AuthenticatedLayoutRoute = AuthenticatedLayoutImport.update({
+  id: '/_authenticated/_layout',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -69,6 +45,42 @@ const authLoginRoute = authLoginImport.update({
   path: '/login',
   getParentRoute: () => rootRoute,
 } as any)
+
+const AuthenticatedLayoutProgressRoute =
+  AuthenticatedLayoutProgressImport.update({
+    id: '/progress',
+    path: '/progress',
+    getParentRoute: () => AuthenticatedLayoutRoute,
+  } as any)
+
+const AuthenticatedLayoutProfileRoute = AuthenticatedLayoutProfileImport.update(
+  {
+    id: '/profile',
+    path: '/profile',
+    getParentRoute: () => AuthenticatedLayoutRoute,
+  } as any,
+)
+
+const AuthenticatedLayoutHistoryRoute = AuthenticatedLayoutHistoryImport.update(
+  {
+    id: '/history',
+    path: '/history',
+    getParentRoute: () => AuthenticatedLayoutRoute,
+  } as any,
+)
+
+const AuthenticatedLayoutDiaryRoute = AuthenticatedLayoutDiaryImport.update({
+  id: '/diary',
+  path: '/diary',
+  getParentRoute: () => AuthenticatedLayoutRoute,
+} as any)
+
+const AuthenticatedLayoutDashboardRoute =
+  AuthenticatedLayoutDashboardImport.update({
+    id: '/dashboard',
+    path: '/dashboard',
+    getParentRoute: () => AuthenticatedLayoutRoute,
+  } as any)
 
 // Populate the FileRoutesByPath interface
 
@@ -95,66 +107,94 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof authSignupImport
       parentRoute: typeof rootRoute
     }
-    '/_authenticated/dashboard': {
-      id: '/_authenticated/dashboard'
+    '/_authenticated/_layout': {
+      id: '/_authenticated/_layout'
+      path: ''
+      fullPath: ''
+      preLoaderRoute: typeof AuthenticatedLayoutImport
+      parentRoute: typeof rootRoute
+    }
+    '/_authenticated/_layout/dashboard': {
+      id: '/_authenticated/_layout/dashboard'
       path: '/dashboard'
       fullPath: '/dashboard'
-      preLoaderRoute: typeof AuthenticatedDashboardImport
-      parentRoute: typeof rootRoute
+      preLoaderRoute: typeof AuthenticatedLayoutDashboardImport
+      parentRoute: typeof AuthenticatedLayoutImport
     }
-    '/_authenticated/diary': {
-      id: '/_authenticated/diary'
+    '/_authenticated/_layout/diary': {
+      id: '/_authenticated/_layout/diary'
       path: '/diary'
       fullPath: '/diary'
-      preLoaderRoute: typeof AuthenticatedDiaryImport
-      parentRoute: typeof rootRoute
+      preLoaderRoute: typeof AuthenticatedLayoutDiaryImport
+      parentRoute: typeof AuthenticatedLayoutImport
     }
-    '/_authenticated/history': {
-      id: '/_authenticated/history'
+    '/_authenticated/_layout/history': {
+      id: '/_authenticated/_layout/history'
       path: '/history'
       fullPath: '/history'
-      preLoaderRoute: typeof AuthenticatedHistoryImport
-      parentRoute: typeof rootRoute
+      preLoaderRoute: typeof AuthenticatedLayoutHistoryImport
+      parentRoute: typeof AuthenticatedLayoutImport
     }
-    '/_authenticated/profile': {
-      id: '/_authenticated/profile'
+    '/_authenticated/_layout/profile': {
+      id: '/_authenticated/_layout/profile'
       path: '/profile'
       fullPath: '/profile'
-      preLoaderRoute: typeof AuthenticatedProfileImport
-      parentRoute: typeof rootRoute
+      preLoaderRoute: typeof AuthenticatedLayoutProfileImport
+      parentRoute: typeof AuthenticatedLayoutImport
     }
-    '/_authenticated/progress': {
-      id: '/_authenticated/progress'
+    '/_authenticated/_layout/progress': {
+      id: '/_authenticated/_layout/progress'
       path: '/progress'
       fullPath: '/progress'
-      preLoaderRoute: typeof AuthenticatedProgressImport
-      parentRoute: typeof rootRoute
+      preLoaderRoute: typeof AuthenticatedLayoutProgressImport
+      parentRoute: typeof AuthenticatedLayoutImport
     }
   }
 }
 
 // Create and export the route tree
 
+interface AuthenticatedLayoutRouteChildren {
+  AuthenticatedLayoutDashboardRoute: typeof AuthenticatedLayoutDashboardRoute
+  AuthenticatedLayoutDiaryRoute: typeof AuthenticatedLayoutDiaryRoute
+  AuthenticatedLayoutHistoryRoute: typeof AuthenticatedLayoutHistoryRoute
+  AuthenticatedLayoutProfileRoute: typeof AuthenticatedLayoutProfileRoute
+  AuthenticatedLayoutProgressRoute: typeof AuthenticatedLayoutProgressRoute
+}
+
+const AuthenticatedLayoutRouteChildren: AuthenticatedLayoutRouteChildren = {
+  AuthenticatedLayoutDashboardRoute: AuthenticatedLayoutDashboardRoute,
+  AuthenticatedLayoutDiaryRoute: AuthenticatedLayoutDiaryRoute,
+  AuthenticatedLayoutHistoryRoute: AuthenticatedLayoutHistoryRoute,
+  AuthenticatedLayoutProfileRoute: AuthenticatedLayoutProfileRoute,
+  AuthenticatedLayoutProgressRoute: AuthenticatedLayoutProgressRoute,
+}
+
+const AuthenticatedLayoutRouteWithChildren =
+  AuthenticatedLayoutRoute._addFileChildren(AuthenticatedLayoutRouteChildren)
+
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/login': typeof authLoginRoute
   '/signup': typeof authSignupRoute
-  '/dashboard': typeof AuthenticatedDashboardRoute
-  '/diary': typeof AuthenticatedDiaryRoute
-  '/history': typeof AuthenticatedHistoryRoute
-  '/profile': typeof AuthenticatedProfileRoute
-  '/progress': typeof AuthenticatedProgressRoute
+  '': typeof AuthenticatedLayoutRouteWithChildren
+  '/dashboard': typeof AuthenticatedLayoutDashboardRoute
+  '/diary': typeof AuthenticatedLayoutDiaryRoute
+  '/history': typeof AuthenticatedLayoutHistoryRoute
+  '/profile': typeof AuthenticatedLayoutProfileRoute
+  '/progress': typeof AuthenticatedLayoutProgressRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/login': typeof authLoginRoute
   '/signup': typeof authSignupRoute
-  '/dashboard': typeof AuthenticatedDashboardRoute
-  '/diary': typeof AuthenticatedDiaryRoute
-  '/history': typeof AuthenticatedHistoryRoute
-  '/profile': typeof AuthenticatedProfileRoute
-  '/progress': typeof AuthenticatedProgressRoute
+  '': typeof AuthenticatedLayoutRouteWithChildren
+  '/dashboard': typeof AuthenticatedLayoutDashboardRoute
+  '/diary': typeof AuthenticatedLayoutDiaryRoute
+  '/history': typeof AuthenticatedLayoutHistoryRoute
+  '/profile': typeof AuthenticatedLayoutProfileRoute
+  '/progress': typeof AuthenticatedLayoutProgressRoute
 }
 
 export interface FileRoutesById {
@@ -162,11 +202,12 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/(auth)/login': typeof authLoginRoute
   '/(auth)/signup': typeof authSignupRoute
-  '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
-  '/_authenticated/diary': typeof AuthenticatedDiaryRoute
-  '/_authenticated/history': typeof AuthenticatedHistoryRoute
-  '/_authenticated/profile': typeof AuthenticatedProfileRoute
-  '/_authenticated/progress': typeof AuthenticatedProgressRoute
+  '/_authenticated/_layout': typeof AuthenticatedLayoutRouteWithChildren
+  '/_authenticated/_layout/dashboard': typeof AuthenticatedLayoutDashboardRoute
+  '/_authenticated/_layout/diary': typeof AuthenticatedLayoutDiaryRoute
+  '/_authenticated/_layout/history': typeof AuthenticatedLayoutHistoryRoute
+  '/_authenticated/_layout/profile': typeof AuthenticatedLayoutProfileRoute
+  '/_authenticated/_layout/progress': typeof AuthenticatedLayoutProgressRoute
 }
 
 export interface FileRouteTypes {
@@ -175,6 +216,7 @@ export interface FileRouteTypes {
     | '/'
     | '/login'
     | '/signup'
+    | ''
     | '/dashboard'
     | '/diary'
     | '/history'
@@ -185,6 +227,7 @@ export interface FileRouteTypes {
     | '/'
     | '/login'
     | '/signup'
+    | ''
     | '/dashboard'
     | '/diary'
     | '/history'
@@ -195,11 +238,12 @@ export interface FileRouteTypes {
     | '/'
     | '/(auth)/login'
     | '/(auth)/signup'
-    | '/_authenticated/dashboard'
-    | '/_authenticated/diary'
-    | '/_authenticated/history'
-    | '/_authenticated/profile'
-    | '/_authenticated/progress'
+    | '/_authenticated/_layout'
+    | '/_authenticated/_layout/dashboard'
+    | '/_authenticated/_layout/diary'
+    | '/_authenticated/_layout/history'
+    | '/_authenticated/_layout/profile'
+    | '/_authenticated/_layout/progress'
   fileRoutesById: FileRoutesById
 }
 
@@ -207,22 +251,14 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   authLoginRoute: typeof authLoginRoute
   authSignupRoute: typeof authSignupRoute
-  AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
-  AuthenticatedDiaryRoute: typeof AuthenticatedDiaryRoute
-  AuthenticatedHistoryRoute: typeof AuthenticatedHistoryRoute
-  AuthenticatedProfileRoute: typeof AuthenticatedProfileRoute
-  AuthenticatedProgressRoute: typeof AuthenticatedProgressRoute
+  AuthenticatedLayoutRoute: typeof AuthenticatedLayoutRouteWithChildren
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   authLoginRoute: authLoginRoute,
   authSignupRoute: authSignupRoute,
-  AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
-  AuthenticatedDiaryRoute: AuthenticatedDiaryRoute,
-  AuthenticatedHistoryRoute: AuthenticatedHistoryRoute,
-  AuthenticatedProfileRoute: AuthenticatedProfileRoute,
-  AuthenticatedProgressRoute: AuthenticatedProgressRoute,
+  AuthenticatedLayoutRoute: AuthenticatedLayoutRouteWithChildren,
 }
 
 export const routeTree = rootRoute
@@ -238,11 +274,7 @@ export const routeTree = rootRoute
         "/",
         "/(auth)/login",
         "/(auth)/signup",
-        "/_authenticated/dashboard",
-        "/_authenticated/diary",
-        "/_authenticated/history",
-        "/_authenticated/profile",
-        "/_authenticated/progress"
+        "/_authenticated/_layout"
       ]
     },
     "/": {
@@ -254,20 +286,35 @@ export const routeTree = rootRoute
     "/(auth)/signup": {
       "filePath": "(auth)/signup.tsx"
     },
-    "/_authenticated/dashboard": {
-      "filePath": "_authenticated/dashboard.tsx"
+    "/_authenticated/_layout": {
+      "filePath": "_authenticated/_layout.tsx",
+      "children": [
+        "/_authenticated/_layout/dashboard",
+        "/_authenticated/_layout/diary",
+        "/_authenticated/_layout/history",
+        "/_authenticated/_layout/profile",
+        "/_authenticated/_layout/progress"
+      ]
     },
-    "/_authenticated/diary": {
-      "filePath": "_authenticated/diary.tsx"
+    "/_authenticated/_layout/dashboard": {
+      "filePath": "_authenticated/_layout/dashboard.tsx",
+      "parent": "/_authenticated/_layout"
     },
-    "/_authenticated/history": {
-      "filePath": "_authenticated/history.tsx"
+    "/_authenticated/_layout/diary": {
+      "filePath": "_authenticated/_layout/diary.tsx",
+      "parent": "/_authenticated/_layout"
     },
-    "/_authenticated/profile": {
-      "filePath": "_authenticated/profile.tsx"
+    "/_authenticated/_layout/history": {
+      "filePath": "_authenticated/_layout/history.tsx",
+      "parent": "/_authenticated/_layout"
     },
-    "/_authenticated/progress": {
-      "filePath": "_authenticated/progress.tsx"
+    "/_authenticated/_layout/profile": {
+      "filePath": "_authenticated/_layout/profile.tsx",
+      "parent": "/_authenticated/_layout"
+    },
+    "/_authenticated/_layout/progress": {
+      "filePath": "_authenticated/_layout/progress.tsx",
+      "parent": "/_authenticated/_layout"
     }
   }
 }
