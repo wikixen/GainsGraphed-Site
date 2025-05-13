@@ -12,14 +12,18 @@ import LogoLight from "../assets/LogoLight.png";
 import { Link } from "@tanstack/react-router";
 
 export const Header = () => {
-  const logo = window.matchMedia &&
-      window.matchMedia("(prefers-color-scheme: dark)").matches
-    ? LogoDark
-    : LogoLight;
-
   return (
     <section className="flex flex-col gap-1 w-56 px-2 border-r-1 border-gray-300 min-h-screen items-center dark:bg-black dark:border-gray-700">
-      <img src={logo} alt="GainsGraphed Logo" className="size-30 mb-2" />
+      <img
+        src={LogoLight}
+        alt="GainsGraphed Logo"
+        className="size-30 mb-2 dark:hidden"
+      />
+      <img
+        src={LogoDark}
+        alt="GainsGraphed Logo"
+        className="size-30 mb-2 not-dark:hidden"
+      />
       <NavMenu />
     </section>
   );

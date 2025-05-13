@@ -1,10 +1,10 @@
-import {
-  BarChartIcon,
-  CookieIcon,
-  CounterClockwiseClockIcon,
-  StopwatchIcon,
-} from "@radix-ui/react-icons";
 import { createFileRoute, Link } from "@tanstack/react-router";
+import {
+  LuChartColumnIncreasing,
+  LuCookie,
+  LuHistory,
+  LuHourglass,
+} from "react-icons/lu";
 import Logo from "../assets/Logo.png";
 import LogoDark from "../assets/LogoDark.png";
 import { PrimaryButton } from "../components/ui/primaryButton";
@@ -15,31 +15,26 @@ export const Route = createFileRoute("/")({
 });
 
 function RouteComponent() {
-  let logo = window.matchMedia &&
-      window.matchMedia("(prefers-color-scheme: dark)").matches
-    ? LogoDark
-    : Logo;
-
   const cardArray = [
     {
-      icon: <BarChartIcon />,
+      icon: <LuChartColumnIncreasing />,
       cardTitle: "Workout Dashboard",
       cardDesc:
         "Get a comprehensive overview of your fitness journey with personalized insights",
     },
     {
-      icon: <CounterClockwiseClockIcon />,
+      icon: <LuHourglass />,
       cardTitle: "Workout History",
       cardDesc:
         "Review your past workouts and see how you've improved over time",
     },
     {
-      icon: <StopwatchIcon />,
+      icon: <LuHistory />,
       cardTitle: "Personal Records",
       cardDesc: "Track your personal bests and celebrate your achievements",
     },
     {
-      icon: <CookieIcon />,
+      icon: <LuCookie />,
       cardTitle: "Food Diary",
       cardDesc:
         "Log your meals and track your macros to optimize your nutrition",
@@ -64,7 +59,16 @@ function RouteComponent() {
           </section>
         </section>
         <section className="flex justify-center">
-          <img src={logo} alt="GainsGraphed Logo" className="size-80" />
+          <img
+            src={Logo}
+            alt="GainsGraphed Logo"
+            className="size-80 mb-2 dark:hidden"
+          />
+          <img
+            src={LogoDark}
+            alt="GainsGraphed Logo"
+            className="size-80 mb-2 not-dark:hidden"
+          />
         </section>
       </header>
       <main className="flex flex-col items-center gap-8 mt-16 dark:bg-black">
@@ -74,7 +78,7 @@ function RouteComponent() {
         <section className="flex flex-wrap gap-8 justify-center">
           {cardArray.map((item) => (
             <article className="flex flex-col gap-3 bg-gray-50 p-6 rounded-xl h-50 w-96 hover:shadow dark:bg-orange-400 dark:hover:shadow-orange-400">
-              <div className="flex bg-blue-100 size-10 items-center justify-center rounded-4xl dark:bg-transparent dark:text-white">
+              <div className="flex bg-blue-100 size-10 items-center justify-center rounded-4xl dark:bg-white dark:text-orange-400">
                 {item.icon}
               </div>
               <h1 className="font-semibold text-lg dark:text-white">
